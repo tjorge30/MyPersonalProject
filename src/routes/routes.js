@@ -1,9 +1,14 @@
-import { Route } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
+import About from '../components/About/About';
+import { useReducer } from 'react';
 
 
-<Switch>
-  <Route exact path="/" component={Home} />
-  <Route path="/about" component={About} />
-  <Route path="/about/contact" component={Contact} />
-</Switch>
+
+export default (
+  <Switch>
+    <Route exact path="/" component={Authentication} />
+    <Route path="/about" component={About} />
+    <Route path="/user" component={User} />
+    <Route path="/admin" component={Admin} />
+  </Switch>
+);
