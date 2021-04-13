@@ -64,7 +64,7 @@ module.exports = {
 
     logout: (req, res) => {
         req.session.destroy();
-        //if storing sessoin on redux may need to clear that out as well
+        //if storing session on redux may need to clear that out as well
         res.sendStatus(200);
     }
 }

@@ -1,5 +1,5 @@
 // import Nav from './components/Nav/Nav';
-import Home from './components/Home/Home';
+import About from './components/About/About';
 import "./App.css";
 // import routes from "./Routes";
 import { withRouter } from "react-router-dom";
@@ -8,11 +8,8 @@ import React from "react";
 function App() {
   return (
     <div className="App">
-     {/* < Nav>
-     Navigation Bar
-     {routes}
-     </Nav> */}
-     < Home/>
+      {/* < Nav/> */}
+      < About/>
     </div>
   );
 }

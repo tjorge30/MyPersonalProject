@@ -28,14 +28,11 @@ app.delete('/auth/logout', authCtrl.logout);
 
 //entries ctrl endpoints
 app.get('/api/user_entry', entriesCtrl.pullEntry);
-app.post('/api/user_entry', entriesCtrl.createEntry);
-app.put('/api/user_entry', entriesCtrl.updateEntry);
+app.post('/api/user_entry', entriesCtrl.createUpdateEntry);
 app.delete('/api/user_entry', entriesCtrl.deleteEntry);
 
 //user ctrl endpoints
 app.get('/api/user', userCtrl.pullUserData);
-//look at this end point further
-app.post('/api/user', userCtrl.createUserData);
 app.put('/api/user', userCtrl.updateUserData);
 
 massive({ 
