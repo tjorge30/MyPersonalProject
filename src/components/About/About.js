@@ -17,11 +17,11 @@ function About() {
                     <div>
                         <h1>...it's just a phase</h1>
                     </div>
-                </div>
-                    
+                </div>    
             </div>
+
+            <h2>Taking the First Step Towards Positive Change</h2>
             <div className='row2'>
-                    <h2>Takeing the First Step Towards Positive Change</h2>
                 <div className='r2Column1'>
                     <p>
                     Thank you for visiting my site! My name is Jessica and I am a life coach who specializes
@@ -36,11 +36,33 @@ function About() {
                        Creating healthy habits typically takes 15 days. This is the same amount of time the cycle of the moon takes. Coincidence? I think not!
                        The moon has an influence on the cycles and natural rhythms of life, Everything that moves is to some degree pulled by the moon.
                     </p>
+                    <button>Learn More</button>
                 </div>
             </div>
+
             <h2>Quick Guide to Setting New Moon Intentions</h2>
             <div className='row3'>
                 <img alt='Moon Phases' src={MoonDesc}/>
+            </div>
+            <h2>How Do I Do This?</h2>
+            <div className='row4'>
+                <div className='r4Column1'>
+                    <p>
+                        The mere mention of the word "change" may cause some to feel uneasy. 
+                        We often find ourselves resisting change, perhaps because of the perceived 
+                        risk or fear associated with it. This resistance can be seen in the student 
+                        who always finds herself procrastinating, the 10-year smoker who 
+                        keeps having "one more," or the overly stressed boss who continues to add 
+                        to her plate. It’s an interesting predicament we put ourselves in. So why do 
+                        we have such a hard time initiating or following through with our desire to change?
+                        A lot of times it is because we have a lack of a support system. This is where I will be able 
+                        to help you! 
+                    </p>
+                    <h2>Step 1.</h2>
+                    <h2>Step 2.</h2>
+                    <h2>Step 3.</h2>
+                    <button>Regiser Now!</button>
+                </div>
             </div>
            
         </div>

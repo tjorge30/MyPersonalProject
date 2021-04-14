@@ -1,14 +1,15 @@
-// import Nav from './components/Nav/Nav';
+import Nav from './components/Nav/Nav';
 import About from './components/About/About';
 import "./App.css";
-// import routes from "./Routes";
+import routes from './routes/routes';
 import { withRouter } from "react-router-dom";
 import React from "react";
 
 function App() {
   return (
     <div className="App">
-      {/* < Nav/> */}
+      < Nav/>
+      {routes}
       < About/>
     </div>
   );

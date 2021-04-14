@@ -1,0 +1,53 @@
+.Nav {
+    height: 90px;
+    width: 100vw;
+    padding: 10px;
+    position: fixed;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.logo img {
+    width: 100px;
+}
+
+.menu {
+    background-color: aqua;
+}
+
+.menu-list>li {
+   
+}
+
+.hamburgerMenu {
+    margin-top: 25px;
+    font-size: 40px;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 100px;
+    font-size: 50px;
+}
+
+@media (max-width:800px) {
+    #lrg-scrn-menu {
+        visibility: hidden;
+    }
+    .Nav {
+        background-color: white;
+    }
+    .lrg-menu>li {
+        display: flex;
+        flex-direction: column;
+    }
+    .menu li {
+        display: flex;
+        padding: 0px;
+    }
+
+}
