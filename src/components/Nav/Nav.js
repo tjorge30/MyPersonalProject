@@ -1,34 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from '../../assets/images/LELogo.png'
 import './Nav.css';
 import { Link } from 'react-router-dom';
 
-function Nav() {
-    const openMenu= () => {
-
+export default class Nav extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            showMenu:'false',
+        }
     }
-    const closeMenu= () => {
 
+    menuClick = () => {
+        if(this.state.showMenu === 'true'){
+            this.setState({ showMenu: 'false'})
+            }else{ this.setState({ showMenu: 'true'})}
     }
 
-    return (
-      <div className="Nav">
-          <div className='logo'>
-            <img alt='Logo' src={Logo}/>
-          </div>
-          <div id='menu' className='menu'>
-                <div onclick={openMenu()} className='hamburgerMenu'>&#9776;</div>
-                <div className='menu-list'>
-                    <span onclick={closeMenu()} className='closeBtn'>&times;</span>  
-                    <ul>
-                    <li><Link to='/'>HOME</Link></li>  
-                    <li><Link to='/user/'>MY PAGE</Link></li>
-                    <li><Link to='/admin/'>ADMIN PAGE</Link></li>
-                    </ul>
-                </div>
-          </div>
-      </div>
-    );    
-  }
-  
-export default Nav;
+    render(){
+        return (
+        <div className="Nav">
+            <div className='logo'>
+                <img alt='Logo' src={Logo}/>
+            </div>
+            <div id='menu' className='menu'>
+                <button onClick={this.menuClick} className='hamburgerMenu'>&#9776;</button>
+                    <div className={this.state.showMenu}>
+                        <div className='popUpMenu'>
+                            <button onClick={this.menuClick} className='closeBtn'>&times;</button>  
+                            <ul>
+                                <li><Link to='/'>HOME</Link></li>  
+                                <li><Link to='/user/'>MY PAGE</Link></li>
+                                <li><Link to='/admin/'>ADMIN PAGE</Link></li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        );    
+    }
+}

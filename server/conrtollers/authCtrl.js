@@ -66,5 +66,13 @@ module.exports = {
         req.session.destroy();
         //if storing session on redux may need to clear that out as well
         res.sendStatus(200);
+    },
+
+    getSession: (req, res) => {
+        if (req.session.user) {
+            res.status(200).send(req.session.user)
+        } else {
+            res.sendStatus(403);
+        }
     }
 }

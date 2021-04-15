@@ -39,11 +39,23 @@ input {
 
 }
 
+/* showReg */
+.true {
+    visibility: visible;
+}
+
+.false {
+    visibility: hidden;
+}
+/* showReg */
+
+
 .row1 {
     height: 70vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-content: center;
+    text-align: center;
     padding: 100px;
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.075) 0%, rgba(255, 255, 255, 0.678) 75%, #ffffff 100%), url('../../assets/images/landingimage.png');
     background-position: center;
@@ -52,18 +64,54 @@ input {
     
 }
 .r1Content{
+    width: 20%;
     display: flex;
-    justify-items: right;
     flex-direction: column;
+    justify-content: center;
+    align-self: center;
     
 }
     .authArea {
         margin-top: 100px;
-        max-width: 450px;
+        min-width: 200px;
         display: flex;
         flex-direction: column;
-        padding-left: 1vw;
+        justify-content: center;
         
+    }
+
+    .regInputArea {
+        z-index: 1;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-self: center;
+        background-color: rgba(0, 0, 0, 0.966);
+    }
+    .regForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-self: center;
+        width: 600px;
+        height: 600px;
+    }
+
+    .regForm > button {
+        margin: 10px;
+        align-self: center;
+        width: 150px;
+        box-shadow: none;
+    }
+
+    .regForm > form > input {
+        width: 350px;
+        margin: 10px;
     }
    
 
@@ -108,6 +156,7 @@ input {
     background-repeat: no-repeat;
     background-size: 130vw;
     margin-bottom: 200px;
+    overflow: hidden;
 }
 
     .row3 > img {

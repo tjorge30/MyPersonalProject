@@ -1,37 +1,68 @@
+/* show Menu List */
+.true {
+    visibility: visible;
+}
+
+.false {
+    visibility: hidden;
+}
+/* show Menu List */
+
 .Nav {
     height: 90px;
     width: 100vw;
-    padding: 10px;
+    margin: 0px;
+    padding: 0;
     position: fixed;
     background-color: transparent;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-content: center;
 }
 
 .logo img {
-    width: 100px;
-}
-
-.menu {
-    background-color: aqua;
-}
-
-.menu-list>li {
-   
+    padding-left: 10px;
+    padding-top: 8px;
+    width: 80px;
 }
 
 .hamburgerMenu {
-    margin-top: 25px;
+    margin-top: 10px;
+    margin-right: 25px;
     font-size: 40px;
 }
 
+.menu > button {
+    border-style: none;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.popUpMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 400px;
+    background-color: white;
+}
+.popUpMenu > ul {
+    list-style: none;
+    position: fixed;
+    top: 150px;
+    right: 60px;
+    font-size: 30px;
+}
+
+
+
 .closeBtn {
-    position: absolute;
+    position: fixed;
     top: 20px;
-    right: 100px;
+    right: 280px;
     font-size: 50px;
+    box-shadow: none;
+    background-color: transparent;
 }
 
 @media (max-width:800px) {
