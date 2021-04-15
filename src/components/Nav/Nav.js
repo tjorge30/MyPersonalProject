@@ -8,6 +8,7 @@ export default class Nav extends React.Component {
         super();
         this.state = {
             showMenu:'false',
+    
         }
     }
 
@@ -17,6 +18,8 @@ export default class Nav extends React.Component {
             }else{ this.setState({ showMenu: 'true'})}
     }
 
+    
+
     render(){
         return (
         <div className="Nav">
@@ -25,13 +28,14 @@ export default class Nav extends React.Component {
             </div>
             <div id='menu' className='menu'>
                 <button onClick={this.menuClick} className='hamburgerMenu'>&#9776;</button>
+                   
                     <div className={this.state.showMenu}>
                         <div className='popUpMenu'>
                             <button onClick={this.menuClick} className='closeBtn'>&times;</button>  
                             <ul>
-                                <li><Link to='/'>HOME</Link></li>  
-                                <li><Link to='/user/'>MY PAGE</Link></li>
-                                <li><Link to='/admin/'>ADMIN PAGE</Link></li>
+                                <li><Link to='/'>Home</Link></li>  
+                                <li><Link to='/user/'>My Page</Link></li>
+                                <li><Link to='/admin/'>Admin Page</Link></li>
                             </ul>
                         </div>
                     </div>
