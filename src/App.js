@@ -1,5 +1,4 @@
 import Nav from './components/Nav/Nav';
-import About from './components/About/About';
 import "./App.css";
 import routes from './routes/routes';
 import { withRouter } from "react-router-dom";
@@ -10,7 +9,6 @@ function App() {
     <div className="App">
       < Nav/>
       {routes}
-      < About/>
     </div>
   );
 }

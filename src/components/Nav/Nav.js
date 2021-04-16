@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react'
 import Logo from '../../assets/images/LELogo.png'
 import './Nav.css';
 import { Link } from 'react-router-dom';
@@ -13,11 +13,16 @@ export default class Nav extends React.Component {
     }
 
     menuClick = () => {
-        if(this.state.showMenu === 'true'){
-            this.setState({ showMenu: 'false'})
-            }else{ this.setState({ showMenu: 'true'})}
+        if(this.state.showMenu === 'false'){
+            this.setState({ showMenu: 'true'})
+            }else if (this.state.showMenu === 'true'){ 
+                this.setState({ showMenu: 'false'})
+            }else { this.setState({ showMenu: 'false'})}
     }
 
+    home = () =>{
+        return 
+    }
     
 
     render(){

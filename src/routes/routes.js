@@ -9,7 +9,7 @@ import Admin from '../components/Admin/Admin';
 export default (
   <Switch>
     <Route exact path="/" component={About} />
-    <Route path="/user/" component={User} />
-    <Route path="/admin/" component={Admin} />
+    <Route path="/user/:id" component={User} />
+    <Route path="/admin/:id" component={Admin} />
   </Switch>
 );
