@@ -1,51 +1,51 @@
-import React from 'react'
-import Logo from '../../assets/images/LELogo.png'
+import React, { useState } from 'react';
+import Logo from '../../assets/images/LELogo.png';
+import homeIcon from '../../assets/images/homeIcon.png';
+import accntIcon from '../../assets/images/accntIcon.png';
 import './Nav.css';
 import { Link } from 'react-router-dom';
 
-export default class Nav extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            showMenu:'false',
+export default function Nav (props) {
+
+const [showMenu, setShowMenu] = useState('false')
     
-        }
+
+   const menuClick = () => {
+        if(showMenu === 'false'){
+            setShowMenu('true')
+            }else if (showMenu === 'true'){ 
+                setShowMenu('false')
+            }else {setShowMenu('false')}
     }
 
-    menuClick = () => {
-        if(this.state.showMenu === 'false'){
-            this.setState({ showMenu: 'true'})
-            }else if (this.state.showMenu === 'true'){ 
-                this.setState({ showMenu: 'false'})
-            }else { this.setState({ showMenu: 'false'})}
-    }
-
-    home = () =>{
+    const home = () =>{
         return 
     }
     
 
-    render(){
-        return (
-        <div className="Nav">
-            <div className='logo'>
-                <img alt='Logo' src={Logo}/>
-            </div>
-            <div id='menu' className='menu'>
-                <button onClick={this.menuClick} className='hamburgerMenu'>&#9776;</button>
-                   
-                    <div className={this.state.showMenu}>
-                        <div className='popUpMenu'>
-                            <button onClick={this.menuClick} className='closeBtn'>&times;</button>  
-                            <ul>
-                                <li><Link to='/'>Home</Link></li>  
-                                <li><Link to='/user/'>My Page</Link></li>
-                                <li><Link to='/admin/'>Admin Page</Link></li>
-                            </ul>
-                        </div>
-                    </div>
-            </div>
+  
+    return (
+    <div className="Nav">
+        <div className='logo'>
+            <img alt='Logo' src={Logo}/>
         </div>
-        );    
-    }
+        <div id='menu' className='menu'>
+            <img className='homeButton' alt='home icon' src={homeIcon}/>
+            <img className='accntButton' alt='account icon' src={accntIcon}/>
+                
+                {/* <div className={showMenu}>
+                    <div className='popUpMenu'>
+                        <button onClick={menuClick} className='closeBtn'>&times;</button>  
+                        <ul>
+                        <Link to='/'></Link>
+                            <li></li>  
+                            <li><Link to='/user/'>My Page</Link></li>
+                            <li><Link to='/admin/'>Admin Page</Link></li>
+                        </ul>
+                    </div>
+                </div> */}
+        </div>
+    </div>
+    );    
+    
 }

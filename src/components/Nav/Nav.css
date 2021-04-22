@@ -9,6 +9,7 @@
 }
 /* show Menu List */
 
+
 .Nav {
     height: 90px;
     width: 100vw;
@@ -28,10 +29,25 @@
     width: 80px;
 }
 
-.hamburgerMenu {
-    margin-top: 10px;
-    margin-right: 25px;
+li {
+    text-decoration: none;
+}
+
+.homeButton{
+    width: 40px;
+    margin-top: 30px;
+    margin-right: 40px;
     font-size: 40px;
+    background-color: #ac5757;
+    
+}
+
+.accntButton{
+    width: 40px;
+    margin-top: 30px;
+    margin-right: 40px;
+    font-size: 40px;
+    background-color: #ac5757;
 }
 
 .menu > button {

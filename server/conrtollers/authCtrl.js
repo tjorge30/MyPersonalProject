@@ -3,13 +3,13 @@ const bcrypt = require ('bcryptjs');
 module.exports = {
     register: async (req, res) => {
         const db = req.app.get('db');
-        const {first_name, password, email, phone, admin} = req.body;
+        const {name, password, email, tel, admin} = req.body;
 
         try{
             //check if an exsisting user matches the email tryin to be registerd with. if so, reject.
-            const [exsistingUser] = await db.get_user_by_email(email)
+            const [existingUser] = await db.get_user_by_email(email)
 
-            if (exsistingUser) {
+            if (existingUser) {
                 return res.status(409).send('user already exsists')
             }
 
@@ -17,49 +17,51 @@ module.exports = {
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(password, salt);
 
-            const [ newUser ] = await db.register_user(first_name, hash, email, phone, admin);
-
+            const [ newUser ] = await db.register_user(name, hash, email, tel, admin);
+            // delete newUser.hash;
             //create a session for the user, using the session info
             req.session.user = newUser;
 
             //send a response that includes the user session info
-            req.status(200).send(newUser);
+            res.status(200).send(req.session.user);
 
         } catch(err) {
             console.log(err)
-            return res.sendStatus(500)
+            return res.sendStatus(err)
         }
         
     },
 
-    login: (req, res) => {
-        const db = req.app('db');
-        const {password, email, admin} = req.body;
+    login: async (req, res) => {
+        const db = req.app.get('db');
+        const {email, password} = req.body;
+
+        try{
 
             //check if users exsists, if so do NOT reject request.
-            db.get_user_by_email(email, admin)
-                .then(([exsistingUser]) => {
-                    if (!exsistingUser){
-                        return res.status(403).send('Incorrect email')
-                    }
+            const [ existingUser ] = await db.get_user_by_email(email);
                 
+            if (!existingUser){
+                return res.status(404).send('Incorrect email');
+            }
+            //compare password from req.body with the stored hash that we just retrieved. if the 
+            //passwords do not match reject sign in request.
+            const isAuthenticated = bcrypt.compareSync
+            (password, existingUser.hash);
 
-                //compare password from req.body with the stored hash that we just retrieved. if the 
-                //passwords do not match reject sign in request.
-                const isAuthenticated= bycrypt.compareSync
-                (password, exsistingUser.hash)
-
-                if(!isAuthenticated){
-                    return res.status(403).send('Incorrect password')
-                }
-                //set up session and do not incluce hash in session.
-                delete exsistingUser.hash;
-                req.session.user = exsistingUser;
-                
-                //send the response and session to the front
-                res.status(200).send(req.session.user);
-            })
-
+            if(!isAuthenticated){
+                return res.status(403).send('Incorrect password')
+            }
+            //set up session and do not incluce hash in session.
+            delete existingUser.hash;
+            req.session.user = existingUser;
+            
+            //send the response and session to the front
+            res.status(200).send(req.session.user);
+        } catch(err){
+            console.log(err)
+            return res.sendStatus(500)
+        }
     },
 
     logout: (req, res) => {

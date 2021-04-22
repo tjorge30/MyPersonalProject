@@ -13,6 +13,7 @@ CREATE TABLE users(
 
 INSERT INTO users (first_name, hash, email, phone, admin)
 VALUES ('Jane', 'hello', 'example@fake.com', '8015672856', 'false');
+Bel, hello, email22@fake.com, 8012344567
 
 
 CREATE TABLE moon_signs(

@@ -3,7 +3,7 @@ const express = require("express");
 const massive = require("massive"); 
 const app = express();
 const session = require('express-session');
-//const bcrypt = require('bcryptjs');
+const moonSignCtrl = require('./conrtollers/moonSignCtrl');
 const authCtrl = require ('./conrtollers/authCtrl');
 const entriesCtrl = require ('./conrtollers/entriesCtrl');
 const userCtrl = require ('./conrtollers/userCtrl');
@@ -22,18 +22,22 @@ app.use(session({
 }));
 
 //auth ctrl endpoints
-app.post('/auth/register', authCtrl.register);
-app.post('/auth/login', authCtrl.login);
-app.delete('/auth/logout', authCtrl.logout);
+app.get('/auth/getSession', authCtrl.getSession);//req.body
+app.post('/auth/register', authCtrl.register);//req.body
+app.post('/auth/login', authCtrl.login);//req.body
+app.delete('/auth/logout', authCtrl.logout);//recieve no data
 
 //entries ctrl endpoints
 app.get('/api/user_entry', entriesCtrl.pullEntry);
-app.post('/api/user_entry', entriesCtrl.createUpdateEntry);
+app.post('/api/user_entry', entriesCtrl.updateEntry);
 app.delete('/api/user_entry', entriesCtrl.deleteEntry);
 
 //user ctrl endpoints
 app.get('/api/user', userCtrl.pullUserData);
 app.put('/api/user', userCtrl.updateUserData);
+
+// moonSigns ctrl endpoints
+app.get('/api/sign', moonSignCtrl.pullSignData);
 
 massive({ 
     connectionString: CONNECTION_STRING, 

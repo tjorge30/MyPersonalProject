@@ -1,111 +1,169 @@
-import React from "react";
+import React, { useState } from "react";
 import JessicaB from "../../assets/images/JessicaB.jpeg";
 import MoonDesc from "../../assets/images/moonPhases.png";
-import Nav from '../Nav/Nav';
-import { connect } from 'react-redux';
+import Nav from "../Nav/Nav";
+import { connect } from "react-redux";
+import { loginUser }from '../../redux/userReducer';
+import axios from 'axios';
 import "./About.css";
 
-class About extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      showReg: "false",
-      showLogin: "true",
-    };
+function About(props){
+  
+   
+    const [showReg, setShowReg] = useState("false")
+    const [showLogin, setShowLogin] = useState("true")
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [tel, setTel] = useState('')
+    const [password, setPassword] = useState('')
+    const [admin, setAdmin] = useState(false)
+  
+  
+
+  const regForm = () => {
+    if (showReg === "true") {
+        setShowReg("false");
+    } else {
+        setShowReg("true");
+    }
+  };
+
+  const loginForm = () => {
+    if (props.isLoggedIn === true) {
+        setShowLogin("false");
+    } else {
+        setShowLogin("true");
+    }
+  };
+
+  const handelRegSubmit = (e) => {
+    e.preventDefault();
+    const body = {
+        name,
+        email,
+        tel,
+        password,
+        admin,
+    }
+    axios
+    .post('/auth/register', body)
+        .then(res => {
+            props.loginUser(res.data);
+            console.log(res.data)
+        })
+        .catch(err => console.log(err))
   }
-  regForm = () => {
-    if (this.state.showReg === "true") {
-      this.setState({ showReg: "false" });
-    } else {
-      this.setState({ showReg: "true" });
+
+
+  const handelLoginSubmit = (e) => {
+    e.preventDefault();
+    const body = {
+        email,
+        password,
     }
-  };
+    axios
+    .post('/auth/login', body) 
+        .then(res => {
+            props.loginUser(res.data);
+            res.data.admin ? props.history.push('/admin/'): props.history.push('/user/')
+        })
+        .catch(err => console.log(err));
+  }
 
-  loginForm = () => {
-    if (this.state.showLogin === "true") {
-      this.setState({ showLogin: "false" });
-    } else {
-      this.setState({ showLogin: "true" });
-    }
-  };
 
-  render() {
-      console.log(this.props)
 
+   
     return (
+      // User registration form with conditional rendering//
       <div>
-        <div className={this.state.showReg}>
+        <div className={showReg}>
           <div className="regInputArea">
             <div className="regForm">
               <form>
                 <input
-                  autocomplete="on"
-                  type="text"
+                  name='name'
+                  value={name}
+                  autoComplete="on"
                   placeholder="*name"
+                  onChange={e => setName(e.target.value)}
                   required
                 ></input>
                 <br />
                 <input
-                  autocomplete="on"
-                  type="email"
+                name='email'
+                value={email}
+                  autoComplete="on"
                   placeholder="*email"
+                  onChange={e => setEmail(e.target.value)}
                   required
                 ></input>
                 <br />
                 <input
-                  autocomplete="on"
-                  type="tel"
+                name='tel'
+                value={tel}
+                  autoComplete="on"
                   placeholder="(999)999-9999"
+                  onChange={e => setTel(e.target.value)}
                 ></input>
                 <br />
                 <input
-                  autocomplete="on"
+                name='password'
+                value={password}
+                  autoComplete="on"
                   type="password"
                   placeholder="*set password"
+                  onChange={e => setPassword(e.target.value)}
                   required
                 ></input>
                 <br />
               </form>
-
-              <button>register</button>
-              <button onClick={this.regForm}>cancel</button>
+              <button onClick={handelRegSubmit}>register</button>
+              <button onClick={regForm}>cancel</button>
             </div>
           </div>
         </div>
+
+        {/* top of the view */}
         <Nav />
         <div className="row1">
-          <div className="r1Content">
-            <div className="authArea">
-                {/* once login is sucessful need to set this.showLogin to false */}
-              <div className={this.showLogin}>
-                <form>
+          <h1>...it's just a phase</h1>
+          <div className={showLogin}>
+            {/* once login is sucessful need to set this.showLogin to false */}
+            <div className="r1Content">
+              <div className="authArea">
+                <form onSubmit={handelLoginSubmit}>
                   <input
-                    autocomplete="on"
-                    type="email"
+                    name='email'
+                    value={email}
                     placeholder="email"
-                    required
+                    onChange={e => setEmail(e.target.value)}
                   ></input>
                   <br />
                   <input
-                    autocomplete="on"
-                    type="password"
+                    name='password'
+                    value={password}
+                    type='password'
                     placeholder="password"
-                    required
+                    onChange={e => setPassword(e.target.value)}
                   ></input>
                   <br />
-                  <button type="submit">login</button>
+                  {/* on click user is loged in or get error and the authArea is hidden from view */}
+                  <button
+                    type="submit"
+                    
+                  >
+                    login
+                  </button>
                   <br />
                 </form>
-                <button onClick={this.regForm}>register</button>
-                <br />
+                <button onClick={regForm}>register</button>
               </div>
             </div>
           </div>
-          <h1>...it's just a phase</h1>
         </div>
 
-        <h2>Taking the First Step Towards Positive Change</h2>
         <div className="row2">
+          <h2>Taking the First Step Towards Positive Change</h2>
           <div className="r2Column1">
             <p>
               Thank you for visiting my site! My name is Jessica and I am a life
@@ -159,16 +217,14 @@ class About extends React.Component {
             <h2>Step 1.</h2>
             <h2>Step 2.</h2>
             <h2>Step 3.</h2>
-            <button onClick={this.regForm}>Register</button>
+            <button onClick={regForm}>Register</button>
           </div>
         </div>
       </div>
-    )
+    );
   }
-};
 
-const mapStateToProps = (reduxState) => {
-    reduxState;
-}
 
-export default connect(mapStateToProps)(App);
+const mapStateToProps = (reduxState) => reduxState;
+
+export default connect(mapStateToProps, {loginUser})(About);
