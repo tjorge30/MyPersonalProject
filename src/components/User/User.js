@@ -13,7 +13,7 @@ const [signMeaning, setSignMeaning] = useState('')
 const [signReading, setSignReading] = useState('')
 const [nameInput, setNameInput] = useState('')
 const [emailInput, setEmailInput] = useState('')
-const [telInput, setTelInput] = useState('')
+const [phoneInput, setPhoneInput] = useState('')
 
 useEffect(() => {
   axios
@@ -84,7 +84,7 @@ console.log(props)
             <form onSubmit={handelSubmit}>
               <input placeholder={first_name} onChange={e => setNameInput(e.target.value)} />
               <input placeholder={email} onChange={e => setEmailInput(e.target.value)}/>
-              <input placeholder={phone} onChange={e => setTelInput(e.target.value)}/>
+              <input placeholder={phone} onChange={e => setPhoneInput(e.target.value)}/>
               <label>Select your Moon Sign:</label>
               <select
                id="moonSigns"
@@ -102,7 +102,7 @@ console.log(props)
                   {signMeaning}
                 </p><br/>
                 <p>
-                Your Sign Tarrot Reading:<br/><br/>
+                Your Tarrot Reading:<br/><br/>
                   {signReading}
                 </p>
               </div>

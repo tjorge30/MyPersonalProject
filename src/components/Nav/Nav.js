@@ -2,26 +2,32 @@ import React, { useState } from 'react';
 import Logo from '../../assets/images/LELogo.png';
 import homeIcon from '../../assets/images/homeIcon.png';
 import accntIcon from '../../assets/images/accntIcon.png';
-import './Nav.css';
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { loginUser }from '../../redux/userReducer';
+import './Nav.css';
 
-export default function Nav (props) {
+function Nav (props) {
 
-const [showMenu, setShowMenu] = useState('false')
+    // const [showMenu, setShowMenu] = useState('false')
+    // const menuClick = () => {
+    //     if(showMenu === 'false'){
+    //         setShowMenu('true')
+    //         }else if (showMenu === 'true'){ 
+    //             setShowMenu('false')
+    //         }else {setShowMenu('false')}
+    // }
+
+
+    const {admin} = props.userReducer.user;
     
-
-   const menuClick = () => {
-        if(showMenu === 'false'){
-            setShowMenu('true')
-            }else if (showMenu === 'true'){ 
-                setShowMenu('false')
-            }else {setShowMenu('false')}
+    const handelAccntBtnClick = () =>{
+        if(admin){
+            return('/admin') 
+        }else{
+            return('/user')
+        }
     }
-
-    const home = () =>{
-        return 
-    }
-    
 
   
     return (
@@ -30,22 +36,14 @@ const [showMenu, setShowMenu] = useState('false')
             <img alt='Logo' src={Logo}/>
         </div>
         <div id='menu' className='menu'>
-            <img className='homeButton' alt='home icon' src={homeIcon}/>
-            <img className='accntButton' alt='account icon' src={accntIcon}/>
-                
-                {/* <div className={showMenu}>
-                    <div className='popUpMenu'>
-                        <button onClick={menuClick} className='closeBtn'>&times;</button>  
-                        <ul>
-                        <Link to='/'></Link>
-                            <li></li>  
-                            <li><Link to='/user/'>My Page</Link></li>
-                            <li><Link to='/admin/'>Admin Page</Link></li>
-                        </ul>
-                    </div>
-                </div> */}
+        <Link to='/'><img className='homeButton' alt='home icon' src={homeIcon}/></Link>
+            <Link to={handelAccntBtnClick}><img className='accntButton' alt='account icon' src={accntIcon}/></Link>
         </div>
     </div>
     );    
     
 }
+
+const mapStateToProps = (reduxState) => reduxState;
+
+export default connect(mapStateToProps, {loginUser})(Nav);

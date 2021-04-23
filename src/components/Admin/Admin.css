@@ -28,7 +28,7 @@ button:hover{
 
 .adminPage {
     width: 100vw;
-    height: 1500px;
+    height: 1800px;
 }
 
 .Admin {
@@ -45,10 +45,10 @@ button:hover{
     
 }
 
-.Admin > .formBox {
+.adminFormBox {
     margin-top: 700px;
     width: 450px;
-    height: 1300px;
+    
     background-color: #E7E6E0;
     border-style: none;
     border-radius: 4px;
@@ -60,6 +60,7 @@ button:hover{
     flex-direction: column;
     justify-content: center;
     align-self: center;
+    height: 1500px;
 }
 
 form {
@@ -85,6 +86,7 @@ form {
     margin: 10px;
     border-radius: 4px;
     border-style: none;
+    font-family: 'Glacial Indifference Regular';
     box-shadow: 5px 5px 20px rgb(145, 145, 145);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;

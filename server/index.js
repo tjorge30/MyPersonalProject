@@ -5,12 +5,15 @@ const app = express();
 const session = require('express-session');
 const moonSignCtrl = require('./conrtollers/moonSignCtrl');
 const authCtrl = require ('./conrtollers/authCtrl');
+const emailerCtrl = require ('./conrtollers/emailerCtrl');
 const entriesCtrl = require ('./conrtollers/entriesCtrl');
 const userCtrl = require ('./conrtollers/userCtrl');
-
+// const path = require('path')
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env; 
 
 app.use(express.json());
+
+
 
 app.use(session({
     secret: SESSION_SECRET,
@@ -38,6 +41,9 @@ app.put('/api/user', userCtrl.updateUserData);
 
 // moonSigns ctrl endpoints
 app.get('/api/sign', moonSignCtrl.pullSignData);
+app.post('/api/sign', moonSignCtrl.updateSignReading);
+// emailer ctrl endpoint
+app.post('/api/email', emailerCtrl.email);
 
 massive({ 
     connectionString: CONNECTION_STRING, 
@@ -49,3 +55,8 @@ massive({
         console.log(`Server listening on port ${SERVER_PORT}.`);   
     })   
 }).catch(err => console.log(err));
+
+// app.use(express.static(__dirname + '/../build'));
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname + '../build/index.html'))
+// });
