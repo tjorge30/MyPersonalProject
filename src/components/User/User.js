@@ -4,10 +4,12 @@ import "./User.css";
 import axios from 'axios';
 import { connect } from "react-redux";
 import { loginUser }from '../../redux/userReducer';
+import { bindActionCreators } from 'redux';
 
 function User (props){
-const {first_name, email, phone} = props.userReducer.user
+const {first_name, email, phone, sign_id} = props.userReducer.user;
 
+const [isLoggedIn, setIsLoggedIn] = useState(false)
 const [moonSigns, setMoonSings] = useState([])
 const [signMeaning, setSignMeaning] = useState('')
 const [signReading, setSignReading] = useState('')
@@ -22,6 +24,15 @@ useEffect(() => {
     setMoonSings(res.data);
   })
   .catch((err) => console.log(err));
+
+  axios
+   .get('/auth/getSession')
+    .then((res) => {
+      console.log(res);
+      setIsLoggedIn(true)
+    })
+    .catch((err) => console.log(err));
+    
   
 }, [])
 
@@ -48,28 +59,20 @@ const handelSelectedSign = (e) => {
 
 const handelSubmit = (e) => {
   e.preventDefault();
-  if (props.userReducer.isLoggedIn){
     axios
       .put('/api/user')
         .then(
             alert('your updates have been saved')
         )
-        .catch(err => {console.log(err)})
-  }else{
-    axios
-      .delete('/auth/logout')
-        .then(
-          props.history.push('/')
-        )
-        .catch(err => {console.log(err)})
-  }    
+        .catch(err => {console.log(err)});  
 }
 
 const handelLogOut = () => {
   axios
     .delete('/auth/logout')
       .then(
-        props.userReducer.isLoggedIn ? alert('LogOut unsucessful') : props.history.push('/')
+        setIsLoggedIn(false),
+        props.history.push('/')
       )
       .catch(err => {console.log(err)})
 }
@@ -82,9 +85,9 @@ console.log(props)
           <div className="formBox">
             <h1>My Page</h1>
             <form onSubmit={handelSubmit}>
-              <input placeholder={first_name} onChange={e => setNameInput(e.target.value)} />
-              <input placeholder={email} onChange={e => setEmailInput(e.target.value)}/>
-              <input placeholder={phone} onChange={e => setPhoneInput(e.target.value)}/>
+              <input name='name' value={nameInput} placeholder={first_name} onChange={e => setNameInput(e.target.value)}/>
+              <input name='email' value={emailInput} placeholder={email} onChange={e => setEmailInput(e.target.value)}/>
+              <input name='phone' value={phoneInput} placeholder={phone} onChange={e => setPhoneInput(e.target.value)}/>
               <label>Select your Moon Sign:</label>
               <select
                id="moonSigns"

@@ -8,12 +8,10 @@ const authCtrl = require ('./conrtollers/authCtrl');
 const emailerCtrl = require ('./conrtollers/emailerCtrl');
 const entriesCtrl = require ('./conrtollers/entriesCtrl');
 const userCtrl = require ('./conrtollers/userCtrl');
-// const path = require('path')
+const path = require('path')
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env; 
 
 app.use(express.json());
-
-
 
 app.use(session({
     secret: SESSION_SECRET,
@@ -56,7 +54,8 @@ massive({
     })   
 }).catch(err => console.log(err));
 
-// app.use(express.static(__dirname + '/../build'));
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname + '../build/index.html'))
-// });
+app.use(express.static(__dirname + '/../build'));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+});

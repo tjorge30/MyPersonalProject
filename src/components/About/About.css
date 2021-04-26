@@ -57,16 +57,16 @@ input {
 
 .row1 {
     width: 100vw;
-    height: 105vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     text-align: center; 
     align-items: center;   
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.075) 0%, rgba(255, 255, 255, 0.678) 75%, #ffffff 100%), url('../../assets/images/landingimage.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-bottom: 200px;
     
 }
 .r1Content{
@@ -132,7 +132,6 @@ input {
     
 
 .row2 {
-    
     width: 100vw;
     display: flex;
     flex-flow: column wrap;
@@ -185,12 +184,15 @@ input {
   }
 
   .row4 {
+    /* padding-top: 300px; */
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.418) 0%, rgba(255, 255, 255, 0.938) 75%, #ffffff 100%), url('../../assets/images/ladderToMoon.png');
-    background-position: center;
+    background-attachment: fixed;
+    background-size: 180vh;
     background-repeat: no-repeat;
   }
 
@@ -199,6 +201,7 @@ input {
         display: flex;
         flex-flow: column wrap;
         align-items: center;
+        align-self: center;
     }
 
    

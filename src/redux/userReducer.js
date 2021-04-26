@@ -4,7 +4,8 @@
 // INITIAL STATE
 const initialState = {
     user: {},
-    isLoggedIn: false,
+    isLoggedIn: false
+    
 }
 
 // ACTION TYPES
@@ -18,15 +19,16 @@ const LOGOUT_USER = 'LOGOUT_USER';
 export function loginUser(user) {
     return {
         type: LOGIN_USER,
-        payload: user,
-        isLoggedIn: true,
+        payload:{
+             user,
+             isLoggedIn: true
+        }
         
     }
 }
 export function logoutUser() {
     return {
         type: LOGOUT_USER,
-        isLoggedIn: false,
     }
 }
 
@@ -38,13 +40,9 @@ export default function reducer(state = initialState, action) {
         case LOGIN_USER:
             return {
                 ...state,
-                user: action.payload
+                user: action.payload.user,
+                isLoggedIn: action.payload.isloggedIn
             }
-        // case LOGIN_USER + _PENDING:
-        //     return {
-        //         ...state,
-        //         user: action.payload
-        //     }
         case LOGOUT_USER:
             return initialState;
         default: return state;

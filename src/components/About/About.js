@@ -14,7 +14,7 @@ function About(props){
     const [showLogin, setShowLogin] = useState("true")
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [tel, setTel] = useState('')
+    const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
     const [admin, setAdmin] = useState(false)
   
@@ -41,7 +41,7 @@ function About(props){
     const body = {
         name,
         email,
-        tel,
+        phone,
         password,
         admin,
     }
@@ -99,11 +99,11 @@ function About(props){
                 ></input>
                 <br />
                 <input
-                name='tel'
-                value={tel}
+                name='phone'
+                value={phone}
                   autoComplete="on"
                   placeholder="(999)999-9999"
-                  onChange={e => setTel(e.target.value)}
+                  onChange={e => setPhone(e.target.value)}
                 ></input>
                 <br />
                 <input
@@ -199,9 +199,10 @@ function About(props){
         <div className="row3">
           <img alt="Moon Phases" src={MoonDesc} />
         </div>
-        <h2>How Do I Do This?</h2>
+        
         <div className="row4">
           <div className="r4Column1">
+          <h2>How Do I Start?</h2>
             <p>
               The mere mention of the word "change" may cause some to feel
               uneasy. We often find ourselves resisting change, perhaps because

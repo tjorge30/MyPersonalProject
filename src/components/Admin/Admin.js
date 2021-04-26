@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { loginUser }from '../../redux/userReducer';
 import Nav from "../Nav/Nav";
 import "./Admin.css";
 import axios from "axios";
 
-export default function Admin(props) {
-  const [moonSigns, setMoonSigns] = useState([]);
-  const [signName, setsignName] = useState("");
-  const [signReading, setSignReading] = useState("");
+function Admin(props) {
+  const {first_name, email} = props.userReducer.user
+  const [nameInput, setNameInput] = useState('')
+  const [emailInput, setEmailInput] = useState('')
+  const [moonSigns, setMoonSigns] = useState([])
+  const [signName, setsignName] = useState("")
+  const [signReading, setSignReading] = useState("")
 
   useEffect(() => {
     axios
@@ -69,8 +74,8 @@ export default function Admin(props) {
         <div className="adminFormBox">
           <h1>Admin Page</h1>
           <form>
-            <input placeholder="Jessica B" />
-            <input placeholder="fakeemail@example.com" />
+            <input name='name' value={nameInput} placeholder={first_name} />
+            <input name='email' value={emailInput} placeholder={email} />
             <button type="submit">Save</button>
           </form>
           <div className="twoButtons">
@@ -85,7 +90,9 @@ export default function Admin(props) {
                 id="moonSigns"
                 name="moonSign"
                 value={signName}
-                onChange={(e) => setsignName(e.target.value)}
+                onChange={(e) => {
+                  setsignName(e.target.value);
+                }}
               >
                 {mappedSignNames}
               </select>
@@ -104,3 +111,6 @@ export default function Admin(props) {
     </div>
   );
 }
+const mapStateToProps = (reduxState) => reduxState;
+
+export default connect(mapStateToProps, {loginUser})(Admin);
