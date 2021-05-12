@@ -104,9 +104,11 @@ li > a:hover {
 
 @media (max-width:800px) {
     #lrg-scrn-menu {
-        visibility: hidden;
+        display:none;
     }
     .Nav {
+        height:60px;
+        width: 100vw;
         background-color: white;
     }
     .lrg-menu>li {
@@ -116,6 +118,26 @@ li > a:hover {
     .menu li {
         display: flex;
         padding: 0px;
+    }
+    .logo img {
+        padding-left: 6px;
+        padding-top: 6px;
+        width: 50px;
+    }
+
+    .homeButton{
+        width: 25px;
+        margin-top: 15px;
+        margin-right: 20px;
+        font-size: 20px;
+        
+    }
+    
+    .accntButton{
+        width: 25px;
+        margin-top: 15px;
+        margin-right: 30px;
+        font-size: 20px;
     }
 
 }

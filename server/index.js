@@ -22,6 +22,8 @@ app.use(session({
     }
 }));
 
+app.use(express.static(__dirname + '/../build'));
+
 //auth ctrl endpoints
 app.get('/auth/getSession', authCtrl.getSession);//req.body
 app.post('/auth/register', authCtrl.register);//req.body
@@ -54,8 +56,8 @@ massive({
     })   
 }).catch(err => console.log(err));
 
-app.use(express.static(__dirname + '/../build'));
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../build/index.html'))
-});
+
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../build/index.html'))
+// });

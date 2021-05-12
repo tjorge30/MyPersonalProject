@@ -19,6 +19,20 @@ h1 {
     background-size: cover;
 }
 
+@media (max-width:800px) {
+    .User {
+        width: 95vw;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.075) 0%, rgba(255, 255, 255, 0.918) 75%, #ffffff 100%), url('../../assets/images/userPage.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200%;
+    }
+}
+
 .User > .formBox {
     margin-top: 40vh;
     width: 450px;
